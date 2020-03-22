@@ -1,0 +1,9 @@
+C:\Users\David\source\repos\SpeechReco\SpeechReco\obj\Debug\SpeechReco.csprojAssemblyReference.cache
+C:\Users\David\source\repos\SpeechReco\SpeechReco\obj\Debug\SpeechReco.Form1.resources
+C:\Users\David\source\repos\SpeechReco\SpeechReco\obj\Debug\SpeechReco.Properties.Resources.resources
+C:\Users\David\source\repos\SpeechReco\SpeechReco\obj\Debug\SpeechReco.csproj.GenerateResource.cache
+C:\Users\David\source\repos\SpeechReco\SpeechReco\bin\Debug\SpeechReco.exe.config
+C:\Users\David\source\repos\SpeechReco\SpeechReco\bin\Debug\SpeechReco.exe
+C:\Users\David\source\repos\SpeechReco\SpeechReco\bin\Debug\SpeechReco.pdb
+C:\Users\David\source\repos\SpeechReco\SpeechReco\obj\Debug\SpeechReco.exe
+C:\Users\David\source\repos\SpeechReco\SpeechReco\obj\Debug\SpeechReco.pdb
