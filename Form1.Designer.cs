@@ -34,12 +34,13 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnClearScreen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(288, 81);
+            this.lblStatus.Location = new System.Drawing.Point(344, 42);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 0;
@@ -88,11 +89,22 @@
             this.textBox2.Size = new System.Drawing.Size(134, 20);
             this.textBox2.TabIndex = 5;
             // 
+            // btnClearScreen
+            // 
+            this.btnClearScreen.Location = new System.Drawing.Point(828, 534);
+            this.btnClearScreen.Name = "btnClearScreen";
+            this.btnClearScreen.Size = new System.Drawing.Size(75, 23);
+            this.btnClearScreen.TabIndex = 6;
+            this.btnClearScreen.Text = "Clear Screen";
+            this.btnClearScreen.UseVisualStyleBackColor = true;
+            this.btnClearScreen.Click += new System.EventHandler(this.btnClearScreen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 640);
+            this.ClientSize = new System.Drawing.Size(1200, 640);
+            this.Controls.Add(this.btnClearScreen);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listBox2);
@@ -118,6 +130,7 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnClearScreen;
     }
 }
 

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Speech;
 using System.Speech.Recognition;
 using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.Collections;
 
 namespace SpeechReco
 {
@@ -21,11 +23,44 @@ namespace SpeechReco
         KnownColor[] allColors;
         Choices colors;
         Point drawingPoint;
+        int buttonClickCount = 0;
+        int lineClick = 0;
+        Point lineStart;
+        Point lineEnd;
 
         public Form1()
         {
             InitializeComponent();
-            getColors();
+            getColors(); 
+            SpeechStartup();
+            
+        }
+
+        
+        private void speakAll()
+        {
+            synthesizer = new System.Speech.Synthesis.SpeechSynthesizer();
+            CultureInfo culture = new CultureInfo("en-US");
+            synthesizer.SelectVoiceByHints(System.Speech.Synthesis.VoiceGender.Female, System.Speech.Synthesis.VoiceAge.Teen, 1, culture);
+          
+            List<string> lis = new List<string>(174);
+            foreach (var it in colorsArray)
+            {
+                lis.Add(colorsArray.ToString());
+            }
+            // System.Threading.Thread.Sleep(20000);
+            Random random = new Random();
+            int item = 0;
+            int count = lis.Count;
+            for (int i = 0; i <= count; i++)
+            {
+                item = random.Next(0, lis.Count);
+                synthesizer.Speak(lis[item]);
+                lis.Remove(lis[item]);
+            }
+            
+            
+
         }
 
         private void getColors()
@@ -62,6 +97,8 @@ namespace SpeechReco
 
             speech.SpeechRecognitionRejected += Speech_SpeechRecognitionRejected;
 
+            speech.EmulateRecognize("Blue");
+
             speech.RecognizeAsync(RecognizeMode.Multiple);
 
         }
@@ -90,7 +127,7 @@ namespace SpeechReco
                     }
                     catch (Exception ex)
                     {
-                        lblStatus.Text += ex.ToString();
+                        lblStatus.Text += string.Concat(ex.ToString(), colorFailure);
                     }
                    
                 }
@@ -106,40 +143,54 @@ namespace SpeechReco
             SpeechStartup();
             btnSpeechStartup.BackColor = Color.Green;
 
-            if (btnSpeechStartup.BackColor == Color.Green)
+            buttonClickCount++;
+            if (buttonClickCount % 2 == 0)
             {
                 btnSpeechStartup.BackColor = Color.Blue;
             }
-           
-                
+            else
+            {
+                btnSpeechStartup.BackColor = Color.Green;
+            }
+                            
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+          
+            
 
-            Pen p = new Pen(Color.Fuchsia);
+            Pen p = new Pen(Color.Purple);
+            p.Width = 5;
 
             Point[] points = new Point[]
             {
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150),
-                new Point(100, 150)
+                new Point(1040, 373),
+                new Point(1041, 197),
+                new Point(1040, 373),    
+                new Point(1047, 552),
+                new Point(1040, 373),
+                new Point(861, 373),
+                new Point(1040, 373),
+                new Point(1339, 373),
+                new Point(1040, 373),
+                new Point(1500, 373)
             };
 
-            if (drawingPoint != null)
-            {
-                g.DrawPie(p, drawingPoint.X, drawingPoint.Y, 50, 50, 0, 360);
-            }
+            //g.DrawLine(p, points[0], points[1]);
+            //g.DrawLine(p, points[2], points[3]);
+            //g.DrawLine(p, points[4], points[5]);
+            //g.DrawLine(p, points[6], points[7]);
+            //g.DrawLine(p, points[8], points[9]);
 
-            
+
+            //if (drawingPoint != null)
+            //{
+            //    g.DrawPie(p, drawingPoint.X, drawingPoint.Y, 50, 50, 0, 360);
+            //}
+
+
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -156,15 +207,22 @@ namespace SpeechReco
             pen.Width = 15;
 
 
-            g.FillPie(Brushes.Violet, e.X - 20, e.Y - 20, 20, 20, 0, 360);
-            
-            Point point1 = new Point(1050, 150);
-            Point point2 = new Point(1000, 400);
-            g.DrawLine(pen, point1, point2);
+            //g.FillPie(Brushes.Violet, e.X - 20, e.Y - 20, 20, 20, 0, 360);
 
-            Point point3 = new Point(980, 171);
-            Point point4 = new Point(845, 382);
-            g.DrawLine(pen, point1, point2);
+            if (lineClick % 2 == 1)
+            {
+
+                lineEnd = new Point(e.X, e.Y);
+                g.DrawLine(pen, lineStart, lineEnd);
+                lineClick = 0;
+            }
+            else
+            {
+                lineStart = new Point(e.X, e.Y);
+                lineClick++;
+            }
+            
+
 
 
         }
@@ -172,47 +230,30 @@ namespace SpeechReco
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             synthesizer = new System.Speech.Synthesis.SpeechSynthesizer();
+            CultureInfo culture = new CultureInfo("en-US");
+            synthesizer.SelectVoiceByHints(System.Speech.Synthesis.VoiceGender.Female, System.Speech.Synthesis.VoiceAge.Teen, 1, culture);
             synthesizer.Speak(listBox1.SelectedItem.ToString());
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                try
-                {
-                    listBox2.SelectedIndex++;
-                }
-                catch (Exception ex)
-                {
-                    lblStatus.Text += ex.ToString();
-                }
+            var selected = (listBox2.Items.Count - 1);
+            listBox2.SelectedIndex = selected;
+            listBox2.SelectionMode = SelectionMode.One;
 
-            }
-            catch (Exception ex)
-            {
-                lblStatus.Text += ex.ToString();
-            }
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                try
-                {
-                    listBox2.SelectedIndex++;
-                }
-                catch (Exception ex)
-                {
-                    lblStatus.Text += ex.ToString();
-                }
+            var selected = (listBox2.Items.Count - 1);
+            listBox2.SelectedIndex = selected;
+        }
 
-            }
-            catch (Exception ex)
-            {
-                lblStatus.Text += ex.ToString();
-            }
+        private void btnClearScreen_Click(object sender, EventArgs e)
+        {
+            Graphics g = Form1.ActiveForm.CreateGraphics();
+
+            g.Clear(Form1.ActiveForm.BackColor);
         }
     }
 }
