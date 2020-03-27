@@ -211,8 +211,8 @@ namespace SpeechReco
 
             if (lineClick % 2 == 1)
             {
-
-                lineEnd = new Point(e.X, e.Y);
+                
+                lineEnd = DrawLineWithDegrees(double.Parse(textBoxDegrees.Text.ToString()), double.Parse(textBoxLength.Text.ToString()), lineStart);              
                 g.DrawLine(pen, lineStart, lineEnd);
                 lineClick = 0;
             }
@@ -225,6 +225,24 @@ namespace SpeechReco
 
 
 
+        }
+
+        private Point DrawLineWithDegrees(double lineLength, double degrees, Point point)
+        {
+            lineLength = 5.00d;
+            int lineX = point.X;
+            int lineY = point.Y;
+            double linePointX = double.Parse(lineX.ToString());
+            double linePointY = double.Parse(lineY.ToString());
+            double calcX = Math.Round((lineLength * Math.Cos(degrees)) + lineX, 0);
+            double calcY = Math.Round((lineLength * Math.Sin(degrees)) + lineY, 0);
+            
+            Int32 calcIntX = Int32.Parse(calcX.ToString());
+            Int32 calcIntY = Int32.Parse(calcY.ToString());
+
+            lineEnd = new Point(calcIntX, calcIntY);
+
+            return lineEnd;
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
@@ -254,6 +272,11 @@ namespace SpeechReco
             Graphics g = Form1.ActiveForm.CreateGraphics();
 
             g.Clear(Form1.ActiveForm.BackColor);
+        }
+
+        private void textBoxDegrees_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

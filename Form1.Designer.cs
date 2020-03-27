@@ -35,6 +35,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClearScreen = new System.Windows.Forms.Button();
+            this.textBoxDegrees = new System.Windows.Forms.TextBox();
+            this.textBoxLength = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStatus
@@ -91,7 +95,7 @@
             // 
             // btnClearScreen
             // 
-            this.btnClearScreen.Location = new System.Drawing.Point(828, 534);
+            this.btnClearScreen.Location = new System.Drawing.Point(686, 542);
             this.btnClearScreen.Name = "btnClearScreen";
             this.btnClearScreen.Size = new System.Drawing.Size(75, 23);
             this.btnClearScreen.TabIndex = 6;
@@ -99,11 +103,48 @@
             this.btnClearScreen.UseVisualStyleBackColor = true;
             this.btnClearScreen.Click += new System.EventHandler(this.btnClearScreen_Click);
             // 
+            // textBoxDegrees
+            // 
+            this.textBoxDegrees.Location = new System.Drawing.Point(811, 548);
+            this.textBoxDegrees.Name = "textBoxDegrees";
+            this.textBoxDegrees.Size = new System.Drawing.Size(67, 20);
+            this.textBoxDegrees.TabIndex = 7;
+            this.textBoxDegrees.TextChanged += new System.EventHandler(this.textBoxDegrees_TextChanged);
+            // 
+            // textBoxLength
+            // 
+            this.textBoxLength.Location = new System.Drawing.Point(917, 548);
+            this.textBoxLength.Name = "textBoxLength";
+            this.textBoxLength.Size = new System.Drawing.Size(67, 20);
+            this.textBoxLength.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(816, 510);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Degrees";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(932, 510);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Length";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 640);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxLength);
+            this.Controls.Add(this.textBoxDegrees);
             this.Controls.Add(this.btnClearScreen);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -131,6 +172,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnClearScreen;
+        private System.Windows.Forms.TextBox textBoxDegrees;
+        private System.Windows.Forms.TextBox textBoxLength;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
