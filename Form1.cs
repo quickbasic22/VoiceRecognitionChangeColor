@@ -232,6 +232,8 @@ namespace SpeechReco
             lineLength = 5.00d;
             int lineX = point.X;
             int lineY = point.Y;
+            degrees = degrees * (Math.PI / 180);
+
             double linePointX = double.Parse(lineX.ToString());
             double linePointY = double.Parse(lineY.ToString());
             double calcX = Math.Round((lineLength * Math.Cos(degrees)) + lineX, 0);
